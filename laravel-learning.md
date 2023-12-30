@@ -37,6 +37,10 @@ Designing a class diagram before starting to code helps us understand the applic
 
 ![Model-view-controller (MVC)](/images/mvc.png)
 
+- **Model** contains the business logic of the application. For example, the Online Store application product data and its functions.
+- **View** contains the application’s user interface. For example, a view to register products or users.
+- **Controller** acts as an interface between model and view elements. For example, a product controller collects information from a “create product” view and passes it to the product model to be stored in the database.
+
 ## Terminal commands
 
 ```
