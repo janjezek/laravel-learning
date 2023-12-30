@@ -33,6 +33,10 @@ Designing a class diagram before starting to code helps us understand the applic
 - **.env**: contains some common configuration values that may differ based on whether your application is running locally or on a production web server. It includes information such as database name, database username, and database password, among others.
 - **composer.json**: holds metadata relevant to the project and manages the project's dependencies, scripts, version, and many more.
 
+## Model-view-controller (MVC)
+
+![Model-view-controller (MVC)](/images/mvc.png)
+
 ## Terminal commands
 
 ```
