@@ -35,11 +35,21 @@ Designing a class diagram before starting to code helps us understand the applic
 
 ## Model-view-controller (MVC)
 
-![Model-view-controller (MVC)](/images/mvc.png)
+Software architectural pattern commonly used to develop web applications containing user interfaces.
 
 - **Model** contains the business logic of the application. For example, the Online Store application product data and its functions.
 - **View** contains the application’s user interface. For example, a view to register products or users.
 - **Controller** acts as an interface between model and view elements. For example, a product controller collects information from a “create product” view and passes it to the product model to be stored in the database.
+
+![Model-view-controller (MVC)](/images/mvc.png)
+
+- Clients (users of our application e.g., browsers in mobile/desktop devices) connect to the application through the Hypertext Transfer Protocol (HTTP). HTTP gives users a way to interact with our web application.
+- On the right, we have the server where we place our application code.
+- All client interactions first pass for a route file called _web.php_.
+- The _web.php_ file passes the interaction to a controller.
+- Controllers communicate with models and pass information to the views, which are finally delivered to the clients as HTML, CSS, and JavaScript code.
+
+We have four models (entities) corresponding to the classes defined in our class diagram.
 
 ## Terminal commands
 
