@@ -51,6 +51,54 @@ Software architectural pattern commonly used to develop web applications contain
 
 We have four models (entities) corresponding to the classes defined in our class diagram.
 
+## Blade
+
+Blade is a powerful templating engine that is included with Laravel.
+
+- Blade template files use the .blade.php file extension and are typically stored in the _resources/views_ directory.
+- In your blade files, you will have a mix of HTML code with Blade directives and Blade elements.
+- Blade directives are convenient shortcuts for common PHP control structures, such as conditional statements and loops.
+
+```
+@if (count($records) > 0)
+I have records!
+@else
+I don't have any records!
+@endif
+```
+
+**Do not use plain PHP code in your views.**
+
+The main reason is to avoid using PHP syntax or PHP tags inside your view files. Instead, you should use the templating engine directives or helpers. What is the advantage? The template engines limit the number of available functionalities implemented in views (to provide a proper code separation).
+
+If you don’t find a directive or helper for a functionality you need to implement in a view file, it is because that functionality should not be implemented in the view (maybe it should be implemented in a controller or in another file).
+
+```
+@yield('subtitle', 'A Laravel Online Store')
+```
+
+_@yield_ is used as a marker. We will inject code in those markers from child Blade views (using the _@section_ directive). _@yield_ uses two parameters, the first is the marker identifier. The second is a default value that will be injected if a child view does not inject code for that marker.
+
+```
+@extends('layouts.app')
+@section('title', 'Home Page - Online Store')
+@section('content')
+<div class="text-center">
+    Welcome to the application
+</div>
+@endsection
+```
+
+The welcome view extends the _layouts.app_ view. This view injects the _'Home Page - Online Store'_ message in the _@yield('title')_ of the layouts.app and injects an HTML div with a welcome message inside the _@yield('content')_ of the _layouts.app_.
+
+Curly braces are used in Blade files to display data passed to the view or invoke Laravel helpers.
+
+```
+{{ asset('/css/app.css') }}
+```
+
+Laravel includes a variety of global helper PHP functions. For example, the asset function generates a URL for an asset using the current scheme of the request (HTTP or HTTPS).
+
 ## Terminal commands
 
 ```
