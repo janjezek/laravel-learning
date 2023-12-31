@@ -54,9 +54,11 @@ We have four models (entities) corresponding to the classes defined in our class
 ## Terminal commands
 
 ```
-php --version
+php --version # PHP version
 
-composer --version
+composer --version # Composer version
+
+which command-name  # locating the executable file matching the given command
 
 pwd # print working directory
 
@@ -64,7 +66,15 @@ ll  # directory content
 
 cd .. # parent directory
 
-which command-name  # locating the executable file matching the given command
+cd ~/Documents/Dev/ # change directory to Dev
+
+cd app-name/ # change directory
+
+laravel new app-name # create new Laravel project
+
+php artisan migrate # database migration of Laravel project
+
+
 
 cat file-name # output content of a file
 ```
