@@ -74,8 +74,6 @@ laravel new app-name # create new Laravel project
 
 php artisan migrate # database migration of Laravel project
 
-
-
 cat file-name # output content of a file
 ```
 
