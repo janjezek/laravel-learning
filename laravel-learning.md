@@ -148,3 +148,11 @@ php artisan make:migration create\_products\_table
 ```
 php artisan migrate
 ```
+
+**Renaming MySQL database**
+
+```
+mysqldump -h 127.0.0.1 -P 3306 -u root -p online_store > olddbdump.sql
+mysqladmin -h 127.0.0.1 -P 3306 -u root -p create laravel_onlinestore
+mysql -h 127.0.0.1 -P 3306 -u root -p laravel_onlineshop < olddbdump.sql
+```
