@@ -99,6 +99,36 @@ Curly braces are used in Blade files to display data passed to the view or invok
 
 Laravel includes a variety of global helper PHP functions. For example, the asset function generates a URL for an asset using the current scheme of the request (HTTP or HTTPS).
 
+## Routing
+
+Laravel Routing is a mechanism used to route all your application requests to specific methods or functions which will deal with those specific requests. Laravel routes accept a URI (Uniform Resource Identifier) along with a closure.
+
+Closures are PHP’s version of anonymous functions. A closure is a function you can pass around as an object, assign to a variable, or pass as a parameter to other functions and methods.
+
+Laravel routes are defined in your route files (located in the routes directory).
+
+- The _routes/web.php_ file defines routes for your web interface. These are the routes that we will use in this book.
+- The _routes/api.php_ file defines routes for your API (if you have one). These are routes used in service-oriented architectures or REST APIs
+
+```
+Route::get('/about', 'App\Http\Controllers\HomeController@about')->name("home.about");
+```
+
+## Controllers
+
+Defining all your request handling logic inside in your route files’ closures does not seem smart. You will end with hundreds or thousands of code lines inside the route files (which affects the project maintainability). A good strategy is to organize this behavior using “controller” classes. Controllers can group related request handling logic into a single class. For example, a UserController class might handle all incoming requests related to users, including showing, creating, updating, and deleting users.
+
+```
+public function about()
+{
+    $viewData = [];
+    $viewData["title"] = "About Page - Online Store";
+    return view('home.about')->with("viewData", $viewData);
+}
+```
+
+The _about_ method is connected to the (“/about”) route in the _routes/web.php_ file. This method defines a set of variables and passes them to the _home.about_ view. When a user goes to the (“/about”) route, the home.about view will be displayed (delivered in the HomeController about method).
+
 ## Terminal commands
 
 ```
