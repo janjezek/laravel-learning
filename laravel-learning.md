@@ -89,6 +89,8 @@ _@yield_ is used as a marker. We will inject code in those markers from child Bl
 @endsection
 ```
 
+> Check [app.blade.php](app.blade.php) & [welcome.blade.php](welcome.blade.php)
+
 The welcome view extends the _layouts.app_ view. This view injects the _'Home Page - Online Store'_ message in the _@yield('title')_ of the layouts.app and injects an HTML div with a welcome message inside the _@yield('content')_ of the _layouts.app_.
 
 Curly braces are used in Blade files to display data passed to the view or invoke Laravel helpers.
@@ -110,24 +112,50 @@ Laravel routes are defined in your route files (located in the routes directory)
 - The _routes/web.php_ file defines routes for your web interface. These are the routes that we will use in this book.
 - The _routes/api.php_ file defines routes for your API (if you have one). These are routes used in service-oriented architectures or REST APIs
 
-```
+```php
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/', function () {
+    $viewData = [];
+    $viewData["title"] = "Home Page - Online Store";
+    return view('home.index')->with("viewData", $viewData);
+});
+
 Route::get('/about', 'App\Http\Controllers\HomeController@about')->name("home.about");
 ```
+
+> Check [web.php](web.php)
+
+- The first route connects the “/” URI with a closure that returns a view (in this case, the _home.index_ view). _view()_ is a Laravel helper method which retrieves a view instance. Check how we pass the _viewData_ variable to the _home.index_ view by chaining the _with_ method onto the _view_ helper method.
+- The second route connects the “/about” URI with the _HomeController about_ method. Besides, we define a custom route name by chaining the _name_ method onto the route definition.
 
 ## Controllers
 
 Defining all your request handling logic inside in your route files’ closures does not seem smart. You will end with hundreds or thousands of code lines inside the route files (which affects the project maintainability). A good strategy is to organize this behavior using “controller” classes. Controllers can group related request handling logic into a single class. For example, a UserController class might handle all incoming requests related to users, including showing, creating, updating, and deleting users.
 
-```
-public function about()
+```php
+public function index()
 {
     $viewData = [];
-    $viewData["title"] = "About Page - Online Store";
-    return view('home.about')->with("viewData", $viewData);
+    $viewData["title"] = "Home Page - Online Store";
+    return view('home.index')->with("viewData", $viewData);
+}
+public function about()
+{
+    $data1 = "About us - Online Store";
+    $data2 = "About us";
+    $description = "This is an about page ...";
+    $author = "Developed by: Your Name";
+    return view('home.about')->with("title", $data1)->with("subtitle", $data2)->with("description", $description)->with("author", $author);
 }
 ```
 
-The _about_ method is connected to the (“/about”) route in the _routes/web.php_ file. This method defines a set of variables and passes them to the _home.about_ view. When a user goes to the (“/about”) route, the home.about view will be displayed (delivered in the HomeController about method).
+> Check [HomeController.php](HomeController.php)
+
+- The _index_ method is connected to the (“/”) route in the _routes/web.php_ file. This method defines a set of variables and passes them to the _home.about_ view.
+- When a user goes to the (“/about”) route, the _home.about_ view will be displayed (delivered in the _HomeController about_ method).
 
 ## Model
 
@@ -147,7 +175,7 @@ php artisan make:model Product
 
 You will see the _Product.php_ file inside the _app/Models_ folder.
 
-```
+```php
 <?php
 
 namespace App\Models;
