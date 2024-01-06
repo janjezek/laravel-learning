@@ -89,7 +89,7 @@ _@yield_ is used as a marker. We will inject code in those markers from child Bl
 @endsection
 ```
 
-> Check [app.blade.php](app.blade.php) & [welcome.blade.php](welcome.blade.php)
+> Check [app.blade.php](app.blade.php), [welcome.blade.php](welcome.blade.php) & [about.blade.php](about.blade.php)
 
 The welcome view extends the _layouts.app_ view. This view injects the _'Home Page - Online Store'_ message in the _@yield('title')_ of the layouts.app and injects an HTML div with a welcome message inside the _@yield('content')_ of the _layouts.app_.
 
@@ -97,9 +97,15 @@ Curly braces are used in Blade files to display data passed to the view or invok
 
 ```
 {{ asset('/css/app.css') }}
+{{ route('home.index') }}
 ```
 
-Laravel includes a variety of global helper PHP functions. For example, the asset function generates a URL for an asset using the current scheme of the request (HTTP or HTTPS).
+- _asset_ function generates a URL for an asset using the current scheme of the request (HTTP or HTTPS).
+- _route_ helper method in the previous layout, which generates a URL for a given named route.
+
+### Localization
+
+In Localization, you move away those texts from controllers and views and place them in the _resources/lang_ folder. Localization allows you even to retrieve strings in various languages. It is not difficult to implement. You can use this link to get more info about it https://laravel.com/docs/9.x/localization#introduction.
 
 ## Routing
 
@@ -226,20 +232,6 @@ php artisan migrate # database migration of Laravel project
 php artisan make:model Name
 
 cat file-name # output content of a file
-```
-
-## PHP_CodeSniffer
-
-```
-composer require --dev squizlabs/php\_codesniffer
-```
-
-```
-./vendor/bin/phpcs
-```
-
-```
-./vendor/bin/phpcbf
 ```
 
 ## MySQL
