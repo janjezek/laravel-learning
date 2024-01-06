@@ -1,5 +1,7 @@
 # Laravel CRUD
 
+https://kinsta.com/blog/laravel-crud/
+
 1. Create new Laravel app `laravel new crudposts`
 2. Create a database
 3. Update _.env_ file and link database
@@ -114,4 +116,55 @@ public function edit($id)
 }
 ```
 
-16. Create model `php artisan make:model Post`
+16. Create model `php artisan make:model Post` _Post.php_ file inside the _App/Models_ folder
+17. Create a `fillable` array in _Post.php_
+
+```php
+class Post extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'body',
+    ];
+}
+```
+
+18. Connect the `Post` model to the _PostController.php_ file.
+
+```php
+use App\Models\Post;
+```
+
+19. Add Routes to _routes/web.php_
+
+```php
+// returns the home page with all posts
+Route::get('/', PostController::class .'@index')->name('posts.index');
+// returns the form for adding a post
+Route::get('/posts/create', PostController::class . '@create')->name('posts.create');
+// adds a post to the database
+Route::post('/posts', PostController::class .'@store')->name('posts.store');
+// returns a page that shows a full post
+Route::get('/posts/{post}', PostController::class .'@show')->name('posts.show');
+// returns the form for editing a post
+Route::get('/posts/{post}/edit', PostController::class .'@edit')->name('posts.edit');
+// updates a post
+Route::put('/posts/{post}', PostController::class .'@update')->name('posts.update');
+// deletes a post
+Route::delete('/posts/{post}', PostController::class .'@destroy')->name('posts.destroy');
+```
+
+20. To connect the routes, open _routes/web.php_ and add after `use Illuminate\Support\Facades\Route;`:
+
+```php
+use App\Http\Controllers\PostController;
+```
+
+21. Generate Blade files
+
+```
+php artisan make:component Layout
+php artisan make:view posts.index
+```
