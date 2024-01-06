@@ -105,7 +105,7 @@ Curly braces are used in Blade files to display data passed to the view or invok
 
 ### Localization
 
-In Localization, you move away those texts from controllers and views and place them in the _resources/lang_ folder. Localization allows you even to retrieve strings in various languages. It is not difficult to implement. You can use this link to get more info about it https://laravel.com/docs/9.x/localization#introduction.
+In Localization, you move away those texts from controllers and views and place them in the _resources/lang_ folder. Localization allows you even to retrieve strings in various languages. It is not difficult to implement. You can use this link to get more info about it https://laravel.com/docs/10.x/localization.
 
 ## Routing
 
@@ -237,7 +237,7 @@ cat file-name # output content of a file
 ## MySQL
 
 ```
-php artisan make:migration create\_products\_table
+php artisan make:migration create_products_table
 ```
 
 ```
