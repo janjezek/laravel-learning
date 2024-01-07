@@ -232,6 +232,8 @@ php artisan migrate # database migration of Laravel project
 php artisan make:model Name
 
 cat file-name # output content of a file
+
+code . # opens VS Code with the folder
 ```
 
 ## MySQL
